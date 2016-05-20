@@ -1,4 +1,4 @@
-Odoo Updater from Configfile. 1.0.0
+Odoo Updater from Configfile. 1.0.1
 ---
 
 Simple, you have an addons-path setted into some place, then you simply run

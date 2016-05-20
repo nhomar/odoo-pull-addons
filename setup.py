@@ -2,7 +2,7 @@ from setuptools import setup
 
 setup(
     name='Update Repositories from Config',
-    version='1.0.0',
+    version='1.0.1',
     py_modules=['update'],
     install_requires=[
         'Click',
