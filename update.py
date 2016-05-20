@@ -6,6 +6,9 @@ import ConfigParser
 import subprocess
 
 
+__version__ = '1.0.0'
+
+
 def git(repo_list, cmd):
     for repo in repo_list:
         cmd_new = ['git'] + cmd
