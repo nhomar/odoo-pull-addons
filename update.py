@@ -22,11 +22,26 @@ def update(config_file, version='8.0'):
     config.readfp(open(config_file))
     ap = config.get('options', 'addons_path')
     repo_list = ap.split(',')
+    check_branch = ['branch']
     update_cmd = ['pull', 'origin', version]
     git(repo_list, update_cmd)
+    git(repo_list, check_branch)
 
 
 @click.command()
-@click.argument('odoo-config', type=click.Path(exists=True))
-def cli(odoo_config):
-    update(click.format_filename(odoo_config))
+@click.option('--odoo-config', '-c',
+              type=click.Path(exists=True),
+              help="A existent config file.")
+@click.option('--odoo-version', '-vv', default='8.0',
+              help="Force check the version")
+@click.option('--version', '-v', is_flag=True,
+              help="Show Version and exit.")
+def cli(odoo_config, odoo_version, version):
+    if version:
+        click.echo(__version__)
+        exit()
+    if not odoo_config:
+        click.echo("Provide a valid Odoo's config file")
+        exit()
+    update(click.format_filename(odoo_config),
+           odoo_version)
